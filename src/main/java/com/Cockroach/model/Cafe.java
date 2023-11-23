@@ -1,14 +1,12 @@
 package com.Cockroach.model;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cafe")
 public class Cafe {
     @Id
-    private Long cafeid;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long cafe_id;
     private String name;
     private String cuisine;
     private String description;
@@ -16,13 +14,11 @@ public class Cafe {
     private String contact;
 
     // Constructors, getters, and setters
-
     public Cafe() {
         // Default constructor
     }
 
-    public Cafe(Long cafeid, String name, String cuisine, String description, String location, String contact) {
-        this.cafeid = cafeid;
+    public Cafe(String name, String cuisine, String description, String location, String contact) {
         this.name = name;
         this.cuisine = cuisine;
         this.description = description;
@@ -30,12 +26,12 @@ public class Cafe {
         this.contact = contact;
     }
 
-    public Long getCafeid() {
-        return cafeid;
+    public long getCafe_id() {
+        return cafe_id;
     }
 
-    public void setCafeid(Long cafeid) {
-        this.cafeid = cafeid;
+    public void setCafe_id(Long cafe_id) {
+        this.cafe_id = cafe_id;
     }
 
     public String getName() {

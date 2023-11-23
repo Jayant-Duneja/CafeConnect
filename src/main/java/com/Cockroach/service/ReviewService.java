@@ -1,6 +1,6 @@
 package com.Cockroach.service;
 
-import com.Cockroach.model.Reviews;
+import com.Cockroach.model.Review;
 import com.Cockroach.repo.ReviewRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +17,15 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public List<Reviews> getAllReviews() {
+    public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
 
-    public List<Reviews> getAllReviewsCustomQuery() {
+    public List<Review> getAllReviewsCustomQuery() {
         return reviewRepository.findAllReviewsCustomQuery();
     }
 
-    public void saveReview(Reviews review) {
+    public void saveReview(Review review) {
         reviewRepository.save(review);
     }
 

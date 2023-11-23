@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CafeRepo extends JpaRepository<Cafe, Long> {
-    @Query(value = "SELECT * FROM public.cafe", nativeQuery = true)
+    @Query(value = "SELECT * FROM defaultdb.cafe", nativeQuery = true)
     List<Cafe> findAllCafesCustomQuery();
 }

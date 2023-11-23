@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cafes")
+@RequestMapping("/api/cafe")
 public class CafeController {
 
     private final CafeService cafeService;
@@ -25,25 +25,25 @@ public class CafeController {
         return cafeService.getAllCafes();
     }
 
-    @GetMapping("/customQuery")
+    @GetMapping("/find")
     public List<Cafe> getAllCafesCustomQuery() {
         return cafeService.getAllCafesCustomQuery();
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<String> createCafe(@RequestBody Cafe cafe) {
         cafeService.saveCafe(cafe);
         return new ResponseEntity<>("Cafe created successfully", HttpStatus.CREATED);
     }
 
-    @PutMapping("/{cafeId}")
+    @PutMapping("/find/{cafeId}")
     public ResponseEntity<String> updateCafe(@PathVariable Long cafeId, @RequestBody Cafe cafe) {
-        cafe.setCafeid(cafeId);
+        cafe.setCafe_id(cafeId);
         cafeService.saveCafe(cafe);
         return new ResponseEntity<>("Cafe updated successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping("/{cafeId}")
+    @DeleteMapping("/delete/{cafeId}")
     public ResponseEntity<String> deleteCafe(@PathVariable Long cafeId) {
         cafeService.deleteCafe(cafeId);
         return new ResponseEntity<>("Cafe deleted successfully", HttpStatus.OK);
