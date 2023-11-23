@@ -13,29 +13,39 @@ public class Review {
     private long review_id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "cafe_id")
+    @JoinColumn(name = "cafe_id", referencedColumnName = "cafe_id")
     private Cafe cafe;
 
-    private Long rating;
+    @Column(name = "rating")
+    private int rating;
+
+    @Column(name = "comment")
     private String comment;
 
+    @Column(name = "review_date")
     private Date review_date;
+
+    @Transient
+    private long student_id;
+
+    @Transient
+    private long cafe_id;
 
     // Constructors, getters, and setters
     public Review() {
         // Default constructor
     }
 
-    public Review(Student student, Cafe cafe, Long rating, String comments, Date reviewdate) {
-        this.student = student;
-        this.cafe = cafe;
+    public Review(long student_id, long cafe_id, int rating, String comment, Date review_date) {
+        this.student_id = student_id;
+        this.cafe_id = cafe_id;
         this.rating = rating;
-        this.comment = comments;
-        this.review_date = reviewdate;
+        this.comment = comment;
+        this.review_date = review_date;
     }
 
     public long getReview_id() {
@@ -66,7 +76,7 @@ public class Review {
         return rating;
     }
 
-    public void setRating(long rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -84,6 +94,30 @@ public class Review {
 
     public void setReviewdate(Date reviewdate) {
         this.review_date = reviewdate;
+    }
+
+    public long getStudent_id() {
+        if (this.student != null) {
+            return this.student.getStudent_id();
+        } else {
+            return this.student_id;
+        }
+    }
+
+    public void setStudent_id(long student_id) {
+        this.student_id = student_id;
+    }
+
+    public long getCafe_id() {
+        if (this.cafe != null) {
+            return this.cafe.getCafe_id();
+        } else {
+            return this.cafe_id;
+        }
+    }
+
+    public void setCafe_id(long cafe_id) {
+        this.cafe_id = cafe_id;
     }
 }
 
