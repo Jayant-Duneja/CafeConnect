@@ -11,7 +11,7 @@ public class Menu {
     @Id
     private int item_id;
     @ManyToOne
-    @JoinColumn(name = "cafe_id", referencedColumnName = "cafe_id")
+    @JoinColumn(name = "cafeid", referencedColumnName = "cafeid")
     private Cafe cafe_id;
     private String name;
     private String description;
