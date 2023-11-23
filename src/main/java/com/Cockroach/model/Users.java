@@ -2,9 +2,11 @@ package com.Cockroach.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Date;
 
 @Entity
+@Table(name = "users")
 public class Users {
     @Id
     private int userid;
@@ -16,7 +18,6 @@ public class Users {
 
 
     // Constructors, getters, and setters
-
     public Users() {
         // Default constructor
     }

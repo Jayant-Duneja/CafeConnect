@@ -24,4 +24,12 @@ public class UserService {
     public List<Users> getAllUsersCustomQuery() {
         return usersRepository.findAllUsersCustomQuery();
     }
+
+    public void saveUser(Users user) {
+        usersRepository.save(user);
+    }
+
+    public void deleteUser(int userId) {
+        usersRepository.deleteById(userId);
+    }
 }
