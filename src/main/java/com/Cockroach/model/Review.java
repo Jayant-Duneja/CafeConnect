@@ -1,48 +1,45 @@
 package com.Cockroach.model;
 
-
 import javax.persistence.*;
-import java.sql.Date;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "review")
 public class Review {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_id")
     private long review_id;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
-    private Student student;
+    @NotNull
+    @Column(name = "cafe_id")
+    private long cafe_id;
 
-    @ManyToOne
-    @JoinColumn(name = "cafe_id", referencedColumnName = "cafe_id")
-    private Cafe cafe;
+    @NotNull
+    @Column(name = "student_id")
+    private long student_id;
 
+    @NotNull
     @Column(name = "rating")
-    private int rating;
+    private Integer rating;
 
     @Column(name = "comment")
     private String comment;
 
+    @NotNull
     @Column(name = "review_date")
-    private Date review_date;
-
-    @Transient
-    private long student_id;
-
-    @Transient
-    private long cafe_id;
+    private LocalDate review_date;
 
     // Constructors, getters, and setters
+
     public Review() {
         // Default constructor
     }
 
-    public Review(long student_id, long cafe_id, int rating, String comment, Date review_date) {
-        this.student_id = student_id;
+    public Review(long cafe_id, long student_id, Integer rating, String comment, LocalDate review_date) {
         this.cafe_id = cafe_id;
+        this.student_id = student_id;
         this.rating = rating;
         this.comment = comment;
         this.review_date = review_date;
@@ -56,68 +53,43 @@ public class Review {
         this.review_id = review_id;
     }
 
-    public Student getStudent() {
-        return student;
+    public long getCafe_id() {
+        return cafe_id;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public Cafe getCafe() {
-        return cafe;
-    }
-
-    public void setCafe(Cafe cafe) {
-        this.cafe = cafe;
-    }
-
-    public long getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public String getComments() {
-        return comment;
-    }
-
-    public void setComments(String comments) {
-        this.comment = comments;
-    }
-
-    public Date getReviewdate() {
-        return review_date;
-    }
-
-    public void setReviewdate(Date reviewdate) {
-        this.review_date = reviewdate;
+    public void setCafe_id(long cafe_id) {
+        this.cafe_id = cafe_id;
     }
 
     public long getStudent_id() {
-        if (this.student != null) {
-            return this.student.getStudent_id();
-        } else {
-            return this.student_id;
-        }
+        return student_id;
     }
 
     public void setStudent_id(long student_id) {
         this.student_id = student_id;
     }
 
-    public long getCafe_id() {
-        if (this.cafe != null) {
-            return this.cafe.getCafe_id();
-        } else {
-            return this.cafe_id;
-        }
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setCafe_id(long cafe_id) {
-        this.cafe_id = cafe_id;
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public LocalDate getReview_date() {
+        return review_date;
+    }
+
+    public void setReview_date(LocalDate review_date) {
+        this.review_date = review_date;
     }
 }
-
