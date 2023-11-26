@@ -32,4 +32,8 @@ public class CafeService {
     public void deleteCafe(Long cafeId) {
         cafeRepository.deleteById(cafeId);
     }
+
+    public Cafe getCafeById(Long cafeId) {
+        return cafeRepository.findById(cafeId).orElse(null);
+    }
 }

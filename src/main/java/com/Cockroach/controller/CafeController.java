@@ -30,6 +30,15 @@ public class CafeController {
         return cafeService.getAllCafesCustomQuery();
     }
 
+    @GetMapping("/find/{cafeId}")
+    public ResponseEntity<Cafe> getCafeById(@PathVariable Long cafeId) {
+        Cafe cafe = cafeService.getCafeById(cafeId);
+        if (cafe != null) {
+            return new ResponseEntity<>(cafe, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     @PostMapping("/add")
     public ResponseEntity<String> createCafe(@RequestBody Cafe cafe) {
         cafeService.saveCafe(cafe);
