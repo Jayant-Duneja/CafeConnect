@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/ShowCafes.css';
 
 function CafeCard({ cafe }) {
@@ -14,47 +14,42 @@ function CafeCard({ cafe }) {
 }
 
 function Cafes() {
+  const [cafes, setCafes] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
 
-    const cafes = [
-        {
-            "cafe_id": 0,
-            "name": "Italian Cafe",
-            "cuisine": "Italian",
-            "description": "A cozy cafe serving delicious Italian cuisine.",
-            "location": "123 Main Street",
-            "contact": "123-456-7890"
-        },
-        {
-            "cafe_id": 919643860344995841,
-            "name": "Coffee Shop",
-            "cuisine": "Coffee",
-            "description": "A cozy cafe serving delicious Coffee.",
-            "location": "223 Main Street",
-            "contact": "511-236-8920"
-        },
-        {
-            "cafe_id": 919644030013341697,
-            "name": "Cozy Coffee Haven",
-            "cuisine": "Coffee Shop",
-            "description": "A comfortable and relaxing coffee shop with a variety of coffee blends.",
-            "location": "456 Oak Street",
-            "contact": "555-1234"
-        },
-        {
-            "cafe_id": 919648317193191425,
-            "name": "Pizza place",
-            "cuisine": "Pizza Shop",
-            "description": "Delicious pizza place.",
-            "location": "222 Walnut Street",
-            "contact": "123-234"
-        }
-    ]
+  useEffect(() => {
+    // Fetch data from the API
+    fetch('http://localhost:8080/api/cafe/find')
+      .then(response => response.json())
+      .then(data => setCafes(data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  const handlePrev = () => {
+    setStartIndex(prevIndex => Math.max(prevIndex - 1, 0));
+  };
+
+  const handleNext = () => {
+    setStartIndex(prevIndex => Math.min(prevIndex + 1, cafes.length - 4));
+  };
 
   return (
     <div className="carousel-container">
-      {cafes.map(cafe => (
-        <CafeCard key={cafe.cafe_id} cafe={cafe} />
-      ))}
+      <div className="carousel">
+        <div className="card-row">
+          {cafes.slice(startIndex, startIndex + 4).map(cafe => (
+            <CafeCard key={cafe.cafe_id} cafe={cafe} />
+          ))}
+        </div>
+      </div>
+      <div className="controls">
+        <button onClick={handlePrev} disabled={startIndex === 0}>
+          Prev
+        </button>
+        <button onClick={handleNext} disabled={startIndex === cafes.length - 4}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }
