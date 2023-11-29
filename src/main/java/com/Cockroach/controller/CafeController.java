@@ -31,7 +31,7 @@ public class CafeController {
     }
 
     @GetMapping("/find/{cafeId}")
-    public ResponseEntity<Cafe> getCafeById(@PathVariable Long cafeId) {
+    public ResponseEntity<Cafe> getCafeById(@PathVariable String cafeId) {
         Cafe cafe = cafeService.getCafeById(cafeId);
         if (cafe != null) {
             return new ResponseEntity<>(cafe, HttpStatus.OK);
@@ -46,15 +46,15 @@ public class CafeController {
     }
 
     @PutMapping("/find/{cafeId}")
-    public ResponseEntity<String> updateCafe(@PathVariable Long cafeId, @RequestBody Cafe cafe) {
+    public ResponseEntity<String> updateCafe(@PathVariable String cafeId, @RequestBody Cafe cafe) {
         cafe.setCafe_id(cafeId);
         cafeService.saveCafe(cafe);
         return new ResponseEntity<>("Cafe updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{cafeId}")
-    public ResponseEntity<String> deleteCafe(@PathVariable Long cafeId) {
-        cafeService.deleteCafe(cafeId);
+    public ResponseEntity<String> deleteCafe(@PathVariable String cafeId) {
+        cafeService.deleteCafe(Long.valueOf(cafeId));
         return new ResponseEntity<>("Cafe deleted successfully", HttpStatus.OK);
     }
 }

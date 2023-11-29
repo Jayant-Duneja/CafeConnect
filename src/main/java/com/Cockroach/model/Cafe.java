@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Cafe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cafe_id;
+    private String cafe_id;
     private String name;
     private String cuisine;
     private String description;
@@ -26,11 +26,11 @@ public class Cafe {
         this.contact = contact;
     }
 
-    public long getCafe_id() {
+    public String getCafe_id() {
         return cafe_id;
     }
 
-    public void setCafe_id(Long cafe_id) {
+    public void setCafe_id(String cafe_id) {
         this.cafe_id = cafe_id;
     }
 

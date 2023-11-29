@@ -33,7 +33,7 @@ public class CafeService {
         cafeRepository.deleteById(cafeId);
     }
 
-    public Cafe getCafeById(Long cafeId) {
-        return cafeRepository.findById(cafeId).orElse(null);
+    public Cafe getCafeById(String cafeId) {
+        return cafeRepository.findById(Long.valueOf(cafeId)).orElse(null);
     }
 }
