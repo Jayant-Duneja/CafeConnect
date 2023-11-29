@@ -15,6 +15,7 @@
   .cafe-info .location-contact {
     display: flex;
     justify-content: space-between;
+    color: whitesmoke;
   }
   
   .carousel-container {
@@ -24,25 +25,46 @@
   }
   
   .carousel {
-    width: 100%;
-    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
   
   .card-row {
     display: flex;
     transition: transform 0.5s ease;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   
   .menu-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding: 15px;
     width: 300px;
     display: inline-block;
     overflow: hidden;
+    background-color: #fff; 
   }
+  
+
+  .menu-item h3 {
+    color: #333; /* Add a text color */
+  }
+
+  .cafe-info h2{
+    color: white;
+  }
+  
+  .menu-item p {
+    color: #666; /* Add a text color */
+  }
+  
+  .menu-item p:last-child {
+    font-weight: bold; 
+    color: #e44d26;
+  }
+  
   
   .controls {
     display: flex;
@@ -58,7 +80,7 @@
     color: #fff;
     border: none;
     border-radius: 5px;
-    margin: 2px 5px;
+    margin: 20px 15px;
   }
   
   button:disabled {

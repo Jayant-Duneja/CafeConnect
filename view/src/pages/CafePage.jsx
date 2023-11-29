@@ -26,21 +26,29 @@ function CafePage() {
   }, [cafeData]);
 
   const handlePrevMenuItem = () => {
-    setCurrentMenuItemIndex(prevIndex => (prevIndex - 1 + menuItems.length) % menuItems.length);
+    setCurrentMenuItemIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
   const handleNextMenuItem = () => {
-    setCurrentMenuItemIndex(prevIndex => (prevIndex + 1) % menuItems.length);
+    setCurrentMenuItemIndex((prevIndex) =>
+      Math.min(prevIndex + 1, menuItems.length - 1)
+    );
   };
 
   return (
     <div className="cafe-page-container">
       {cafeData ? (
         <div className="cafe-info">
-          <h2>{cafeData.name} {cafeData.name.includes("Coffee") ? '\u2615' : null}</h2>
+          <h2>
+            {cafeData.name} {cafeData.name.includes('Coffee') ? '\u2615' : null}
+          </h2>
           <div className="location-contact">
-            <p><b>Location</b>: {cafeData.location}</p>
-            <p style={{ marginLeft: '10px' }}><b>Contact</b>: {cafeData.contact}</p>
+            <p>
+              <b>Location</b>: {cafeData.location}
+            </p>
+            <p style={{ marginLeft: '10px' }}>
+              <b>Contact</b>: {cafeData.contact}
+            </p>
           </div>
         </div>
       ) : (
@@ -51,19 +59,24 @@ function CafePage() {
       {Array.isArray(menuItems) && menuItems.length > 0 ? (
         <div className="carousel-container">
           <div className="carousel">
-            <div className="card-row">
-              <div className="menu-item">
-                <h3>{menuItems[currentMenuItemIndex].name}</h3>
-                <p>{menuItems[currentMenuItemIndex].description}</p>
-                <p>${menuItems[currentMenuItemIndex].price}</p>
+            {menuItems.slice(currentMenuItemIndex, currentMenuItemIndex + 3).map((menuItem, index) => (
+              <div className="card-row" key={index} style={{marginRight:'20px'}}>
+                <div className="menu-item">
+                  <h3>{menuItem.name}</h3>
+                  <p style={{ whiteSpace: 'pre-line' }}>{menuItem.description}</p>
+                  <p>${menuItem.price}</p>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
           <div className="controls">
-            <button onClick={handlePrevMenuItem} disabled={menuItems.length <= 1}>
+            <button onClick={handlePrevMenuItem} disabled={currentMenuItemIndex === 0}>
               Prev
             </button>
-            <button onClick={handleNextMenuItem} disabled={menuItems.length <= 1}>
+            <button
+              onClick={handleNextMenuItem}
+              disabled={currentMenuItemIndex + 3 >= menuItems.length}
+            >
               Next
             </button>
           </div>

@@ -14,10 +14,11 @@ function CafeCard({ cafe}) {
   return (
     <div className="cafe-card" onClick={handleClickedCafe}>
       <h3>{cafe.name}</h3>
-      <p>Cuisine: {cafe.cuisine}</p>
-      <p>{cafe.description}</p>
-      <p>Location: {cafe.location}</p>
-      <p>Contact: {cafe.contact}</p>
+      <p>{cafe.cuisine}</p>
+      <p style={{ whiteSpace: 'pre-line' }}>{cafe.description}</p>
+      {/* <p>{cafe.location}</p> */}
+      {/* <p><b>Contact</b>: {cafe.contact}</p> */}
+      
     </div>
   );
 }

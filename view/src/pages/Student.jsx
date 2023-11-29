@@ -19,7 +19,7 @@ function Student() {
        
         <div className="cafes-container">
             <b>Trending Cafes in your area...</b>
-            <Cafes />
+            <Cafes isOwner={false}/>
         </div>
       </div>
     );
