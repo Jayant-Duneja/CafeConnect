@@ -2,10 +2,9 @@
 # Final Project(Project 5,6,7)
 
 Team Members:
-1. Name
-2. Name
+1. Jayant Duneja
+2. Tilak Singh
 
-Java Version:
+Java Version: 17
 
-Additional Comments:
-
+Additional Comments: Refer "Project 6 Update.pdf" for details
