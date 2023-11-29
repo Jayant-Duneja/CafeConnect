@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import '../style/ShowCafes.css';
+import { useNavigate } from 'react-router-dom';
 
-function CafeCard({ cafe }) {
+
+function CafeCard({ cafe}) {
+  const navigate = useNavigate();
+
+  const handleClickedCafe = () => {
+    navigate(`/cafe/${cafe.cafe_id}`, { state: { cafe } });
+  };
+  
+
   return (
-    <div className="cafe-card">
+    <div className="cafe-card" onClick={handleClickedCafe}>
       <h3>{cafe.name}</h3>
       <p>Cuisine: {cafe.cuisine}</p>
       <p>{cafe.description}</p>
@@ -13,7 +22,8 @@ function CafeCard({ cafe }) {
   );
 }
 
-function Cafes() {
+
+function Cafes({isOwner}) {
   const [cafes, setCafes] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
 
@@ -21,7 +31,10 @@ function Cafes() {
     // Fetch data from the API
     fetch('http://localhost:8080/api/cafe/find')
       .then(response => response.json())
-      .then(data => setCafes(data))
+      .then(data => {
+        console.log('Fetched Data:', data);
+        setCafes(data)
+      })
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
