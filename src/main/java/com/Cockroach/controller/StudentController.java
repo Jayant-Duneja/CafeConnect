@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/student")
 public class StudentController {
 
-    private final StudentService studentService;
+    private static StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
@@ -26,7 +26,7 @@ public class StudentController {
     }
 
     @GetMapping("/find")
-    public List<Student> getAllUsersCustomQuery() {
+    public static List<Student> getAllUsersCustomQuery() {
         return studentService.getAllStudentCustomQuery();
     }
 

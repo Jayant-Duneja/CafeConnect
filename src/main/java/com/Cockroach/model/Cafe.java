@@ -1,9 +1,11 @@
 package com.Cockroach.model;
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "cafe")
-public class Cafe {
+public class Cafe{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String cafe_id;
@@ -13,12 +15,13 @@ public class Cafe {
     private String location;
     private String contact;
 
+
     // Constructors, getters, and setters
     public Cafe() {
         // Default constructor
     }
 
-    public Cafe(String name, String cuisine, String description, String location, String contact) {
+    public Cafe(String name, String cuisine, String description, String location, String contact, String observers_id_list) {
         this.name = name;
         this.cuisine = cuisine;
         this.description = description;

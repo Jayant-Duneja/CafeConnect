@@ -1,6 +1,7 @@
 package com.Cockroach.controller;
 
 import com.Cockroach.model.Cafe;
+import com.Cockroach.model.Student;
 import com.Cockroach.service.CafeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cafe")
@@ -39,6 +41,7 @@ public class CafeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @PostMapping("/add")
     public ResponseEntity<String> createCafe(@RequestBody Cafe cafe) {
         cafeService.saveCafe(cafe);
