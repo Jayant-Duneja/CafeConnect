@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    private final StudentRepo studentRepo;
+    private static StudentRepo studentRepo;
 
     @Autowired
     public StudentService(StudentRepo student) {
@@ -21,7 +21,7 @@ public class StudentService {
         return studentRepo.findAll();
     }
 
-    public List<Student> getAllStudentCustomQuery() {
+    public static List<Student> getAllStudentCustomQuery() {
         return studentRepo.findAllStudentCustomQuery();
     }
 
@@ -31,5 +31,8 @@ public class StudentService {
 
     public void deleteUser(int student_id) {
         studentRepo.deleteById(student_id);
+    }
+    public static Student getStudentById(long student_id) {
+        return studentRepo.findById(student_id).orElse(null);
     }
 }

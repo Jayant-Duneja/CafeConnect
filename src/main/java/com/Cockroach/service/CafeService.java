@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class CafeService {
 
-    private final CafeRepo cafeRepository;
+    private static CafeRepo cafeRepository;
 
     @Autowired
     public CafeService(CafeRepo cafeRepository) {
@@ -33,7 +33,7 @@ public class CafeService {
         cafeRepository.deleteById(cafeId);
     }
 
-    public Cafe getCafeById(String cafeId) {
+    public static Cafe getCafeById(String cafeId) {
         return cafeRepository.findById(Long.valueOf(cafeId)).orElse(null);
     }
 }

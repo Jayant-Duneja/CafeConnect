@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface CafeRepo extends JpaRepository<Cafe, Long> {
     @Query(value = "SELECT * FROM defaultdb.cafe", nativeQuery = true)
     List<Cafe> findAllCafesCustomQuery();
-
+    @Query(value = "SELECT * FROM defaultdb.cafe WHERE cafe_id = ?1", nativeQuery = true)
     Optional<Cafe> findById(Long cafeId);
 }
