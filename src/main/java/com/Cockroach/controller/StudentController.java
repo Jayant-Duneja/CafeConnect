@@ -22,30 +22,30 @@ public class StudentController {
 
     @GetMapping
     public List<Student> getAllUsers() {
-        return studentService.getAllStudent();
+        return studentService.getAllStudents();
     }
 
     @GetMapping("/find")
     public static List<Student> getAllUsersCustomQuery() {
-        return studentService.getAllStudentCustomQuery();
+        return studentService.getAllStudentsCustomQuery();
     }
 
     @PostMapping("/add")
     public ResponseEntity<String> createUser(@RequestBody Student user) {
-        studentService.saveUser(user);
+        studentService.saveStudent(user);
         return new ResponseEntity<>("User created successfully", HttpStatus.CREATED);
     }
 
     @PutMapping("/find/{userId}")
     public ResponseEntity<String> updateStudent(@PathVariable int userId, @RequestBody Student user) {
         user.setStudent_id(userId);
-        studentService.saveUser(user);
+        studentService.saveStudent(user);
         return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<String> deleteStudent(@PathVariable int student_id) {
-        studentService.deleteUser(student_id);
+        studentService.deleteStudent(student_id);
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
     }
 }
