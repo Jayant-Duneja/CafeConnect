@@ -15,11 +15,7 @@ public class Cafe{
     private String location;
     private String contact;
 
-
-    // Constructors, getters, and setters
-    public Cafe() {
-        // Default constructor
-    }
+    public Cafe() {}
 
     public Cafe(String name, String cuisine, String description, String location, String contact, String observers_id_list) {
         this.name = name;

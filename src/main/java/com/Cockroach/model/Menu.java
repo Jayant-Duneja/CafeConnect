@@ -27,12 +27,7 @@ public class Menu {
     @Column(name = "price")
     private Double price;
 
-
-    // Constructors, getters, and setters
-
-    public Menu() {
-        // Default constructor
-    }
+    public Menu() {}
 
     public Menu(long item_id, long cafe_id, String name, String description, Double price) {
         this.item_id = item_id;

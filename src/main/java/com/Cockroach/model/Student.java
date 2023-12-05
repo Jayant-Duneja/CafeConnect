@@ -14,12 +14,7 @@ public class Student  {
     private byte[] profile_image;
     private Date reg_date;
 
-
-
-    // Constructors, getters, and setters
-    public Student() {
-        // Default constructor
-    }
+    public Student() {}
 
     public Student(String userName, String cuEmail, byte[] profileImage, Date regDate) {
         this.student_name = userName;

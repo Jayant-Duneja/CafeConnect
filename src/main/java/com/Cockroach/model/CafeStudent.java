@@ -17,11 +17,7 @@ public class CafeStudent{
     @Column(name = "student_id")
     private Long student_id;
 
-    // Other fields or relationships...
-
-    public CafeStudent() {
-        // Default constructor
-    }
+    public CafeStudent() {}
 
     public CafeStudent(Long cafeId, Long observerId) {
         this.cafe_id = cafeId;

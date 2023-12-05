@@ -31,11 +31,7 @@ public class Review {
     @Column(name = "review_date")
     private LocalDate review_date;
 
-    // Constructors, getters, and setters
-
-    public Review() {
-        // Default constructor
-    }
+    public Review() {}
 
     public Review(long cafe_id, long student_id, Integer rating, String comment, LocalDate review_date) {
         this.cafe_id = cafe_id;

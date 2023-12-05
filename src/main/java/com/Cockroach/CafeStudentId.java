@@ -8,8 +8,6 @@ public class CafeStudentId implements Serializable {
     private Long cafe_id;
     private Long student_id;
 
-    // Constructors, getters, and setters...
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
