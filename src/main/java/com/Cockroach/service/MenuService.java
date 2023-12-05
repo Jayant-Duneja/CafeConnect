@@ -26,7 +26,21 @@ public class MenuService {
     }
 
     public void saveMenuItem(Menu menu) {
-        menuRepository.save(menu);
+
+        // Check if a special discount is provided
+        Double specialDiscount = menu.getSpecialDiscount();
+
+        // Create Menu instance with or without a special discount using the factory pattern
+        Menu menuWithDiscount = new Menu(
+                menu.getItem_id(),
+                menu.getCafe_id(),
+                menu.getName(),
+                menu.getDescription(),
+                menu.getPrice(),
+                specialDiscount
+        );
+
+        menuRepository.save(menuWithDiscount);
     }
 
     public void deleteMenuItem(Long itemId) {
