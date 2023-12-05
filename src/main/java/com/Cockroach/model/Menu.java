@@ -99,26 +99,11 @@ public class Menu {
         return specialDiscount;
     }
 
-    public void setSpecialDiscount(Double specialDiscount) {
-        this.specialDiscount = specialDiscount;
-        updateDiscountFactory();
-        updateNewPrice();
-    }
-
-    public Double getNewPrice() {
-        return newPrice;
-    }
-
     private void updateDiscountFactory() {
         this.discountFactory = (specialDiscount != null) ? new ItemWithDiscount(specialDiscount) : new ItemWithoutDiscount();
     }
 
     private void updateNewPrice() {
-        if (this.price != null && discountFactory != null) {
-            this.newPrice = this.price - discountFactory.applyDiscount(this.price);
-        } else {
-            this.newPrice = this.price;
-        }
+        this.newPrice = this.discountFactory.applyDiscount(price);
     }
-
 }
