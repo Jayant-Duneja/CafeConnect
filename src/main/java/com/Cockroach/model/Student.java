@@ -1,13 +1,11 @@
 package com.Cockroach.model;
 
-import Observer.Observer;
-
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "student")
-public class Student implements Observer {
+public class Student  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long student_id;
@@ -69,11 +67,6 @@ public class Student implements Observer {
 
     public void setReg_date(Date reg_date) {
         this.reg_date = reg_date;
-    }
-
-    @Override
-    public void update(String cafeName, String message) {
-        System.out.println("Notification received");
     }
 }
 
