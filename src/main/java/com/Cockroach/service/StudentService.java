@@ -1,5 +1,6 @@
 package com.Cockroach.service;
 
+import com.Cockroach.model.FriendNetwork;
 import com.Cockroach.model.Student;
 import com.Cockroach.repo.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.List;
 public class StudentService {
 
     private static StudentRepo studentRepo;
+    private FriendNetworkService friendNetworkService;
 
     @Autowired
     public StudentService(StudentRepo student) {
@@ -34,5 +36,29 @@ public class StudentService {
     }
     public static Student getStudentById(long student_id) {
         return studentRepo.findById(student_id).orElse(null);
+    }
+
+    public void sendFriendRequest(Long senderId, Long recipientId) {
+        Student sender = getStudentById(senderId);
+        Student recipient = getStudentById(recipientId);
+
+        System.out.println("sender: " + sender);
+        System.out.println("recipient: " + recipient);
+
+        if (sender != null && recipient != null) {
+            friendNetworkService.sendFriendRequest(sender, recipient);
+        }
+    }
+
+    public void acceptFriendRequest(Long requestId) {
+        friendNetworkService.acceptFriendRequest(requestId);
+    }
+
+    public void rejectFriendRequest(Long requestId) {
+        friendNetworkService.rejectFriendRequest(requestId);
+    }
+
+    public List<FriendNetwork> getPendingFriendRequests(Long studentId) {
+        return friendNetworkService.getPendingFriendRequests(studentId);
     }
 }
