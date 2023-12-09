@@ -3,6 +3,8 @@ package com.Cockroach.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+
+// Inheritance
 public abstract class BaseController {
 
     protected ResponseEntity<String> createSuccessResponse(String message) {
