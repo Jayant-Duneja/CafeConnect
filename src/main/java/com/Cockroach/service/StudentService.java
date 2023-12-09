@@ -2,11 +2,14 @@ package com.Cockroach.service;
 
 import com.Cockroach.model.FriendNetwork;
 import com.Cockroach.model.Student;
+import com.Cockroach.repo.FriendNetworkRepo;
 import com.Cockroach.repo.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -15,8 +18,9 @@ public class StudentService {
     private FriendNetworkService friendNetworkService;
 
     @Autowired
-    public StudentService(StudentRepo student) {
-        this.studentRepo = student;
+    public StudentService(StudentRepo studentRepo, FriendNetworkService friendNetworkService) {
+        this.studentRepo = studentRepo;
+        this.friendNetworkService = friendNetworkService;
     }
 
     public List<Student> getAllStudent() {

@@ -9,12 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+// Other imports...
 
 @RestController
 @RequestMapping("/api/student")
 public class StudentController {
 
-    private static StudentService studentService;
+    private final StudentService studentService;
+
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
@@ -26,8 +28,8 @@ public class StudentController {
     }
 
     @GetMapping("/find")
-    public static List<Student> getAllUsersCustomQuery() {
-        return studentService.getAllStudentCustomQuery();
+    public List<Student> getAllUsersCustomQuery() {
+        return StudentService.getAllStudentCustomQuery();
     }
 
     @PostMapping("/add")
@@ -36,9 +38,9 @@ public class StudentController {
         return new ResponseEntity<>("User created successfully", HttpStatus.CREATED);
     }
 
-    @PutMapping("/find/{student_id}")
-    public ResponseEntity<String> updateStudent(@PathVariable int userId, @RequestBody Student user) {
-        user.setStudent_id(userId);
+    @PutMapping("/update/{student_id}")
+    public ResponseEntity<String> updateStudent(@PathVariable int student_id, @RequestBody Student user) {
+        user.setStudent_id(student_id);
         studentService.saveUser(user);
         return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
     }
@@ -49,25 +51,25 @@ public class StudentController {
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
     }
 
-    @GetMapping ("/friend-request/{senderId}/{recipientId}")
+    @GetMapping("/friend-request/send/{senderId}/{recipientId}")
     public ResponseEntity<String> sendFriendRequest(@PathVariable Long senderId, @PathVariable Long recipientId) {
         studentService.sendFriendRequest(senderId, recipientId);
         return new ResponseEntity<>("Friend request sent successfully", HttpStatus.OK);
     }
 
-    @PostMapping("/accept-friend-request/{requestId}")
+    @GetMapping("/friend-request/accept/{requestId}")
     public ResponseEntity<String> acceptFriendRequest(@PathVariable Long requestId) {
         studentService.acceptFriendRequest(requestId);
         return new ResponseEntity<>("Friend request accepted successfully", HttpStatus.OK);
     }
 
-    @PostMapping("/reject-friend-request/{requestId}")
+    @GetMapping("/friend-request/reject/{requestId}")
     public ResponseEntity<String> rejectFriendRequest(@PathVariable Long requestId) {
         studentService.rejectFriendRequest(requestId);
         return new ResponseEntity<>("Friend request rejected successfully", HttpStatus.OK);
     }
 
-    @GetMapping("/friend-request/{studentId}/pending")
+    @GetMapping("/friend-request/pending/{studentId}")
     public ResponseEntity<List<FriendNetwork>> getPendingFriendRequests(@PathVariable Long studentId) {
         List<FriendNetwork> pendingFriendRequests = studentService.getPendingFriendRequests(studentId);
 
