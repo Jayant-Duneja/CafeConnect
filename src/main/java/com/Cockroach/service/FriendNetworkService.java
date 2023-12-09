@@ -56,4 +56,8 @@ public class FriendNetworkService {
     public List<FriendNetwork> getPendingFriendRequests(Long studentId) {
         return friendNetworkRepo.findAllFriendRequestsReceivedByStudent(studentId);
     }
+
+    public List<FriendNetwork> getAllFriendsByStudentId(Long studentId) {
+        return friendNetworkRepo.findAllFriendsByStudentId(studentId);
+    }
 }

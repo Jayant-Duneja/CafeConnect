@@ -2,6 +2,7 @@ package com.Cockroach.controller;
 
 import com.Cockroach.model.FriendNetwork;
 import com.Cockroach.model.Student;
+import com.Cockroach.service.FriendNetworkService;
 import com.Cockroach.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,12 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+    private FriendNetworkService friendNetworkService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, FriendNetworkService friendNetworkService) {
         this.studentService = studentService;
+        this.friendNetworkService = friendNetworkService;
     }
 
     @GetMapping
@@ -79,4 +82,15 @@ public class StudentController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+    @GetMapping("/friends/{studentId}")
+    public ResponseEntity<List<FriendNetwork>> getAllFriendsByStudentId(@PathVariable Long studentId) {
+        List<FriendNetwork> friends = studentService.getAllFriendsByStudentId(studentId);
+
+        if (friends != null && !friends.isEmpty()) {
+            return new ResponseEntity<>(friends, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
 }
