@@ -1,6 +1,6 @@
-package com.Cockroach.factory;
+package com.Cockroach.strategy;
 
-public class ItemWithDiscount implements DiscountFactory {
+public class ItemWithDiscount implements DiscountStrategy {
     private final Double specialDiscount;
 
     public ItemWithDiscount(Double specialDiscount) {

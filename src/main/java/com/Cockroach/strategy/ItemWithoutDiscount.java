@@ -1,6 +1,6 @@
-package com.Cockroach.factory;
+package com.Cockroach.strategy;
 
-public class ItemWithoutDiscount implements DiscountFactory {
+public class ItemWithoutDiscount implements DiscountStrategy {
     @Override
     public Double applyDiscount(Double originalPrice) {
         return originalPrice;

@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/student")
 public class StudentController {
 
-    private static StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
@@ -26,8 +26,8 @@ public class StudentController {
     }
 
     @GetMapping("/find")
-    public static List<Student> getAllUsersCustomQuery() {
-        return studentService.getAllStudentCustomQuery();
+    public List<Student> getAllUsersCustomQuery() {
+        return StudentService.getAllStudentCustomQuery();
     }
 
     @PostMapping("/add")
@@ -44,8 +44,8 @@ public class StudentController {
     }
 
     @DeleteMapping("/delete/{userId}")
-    public ResponseEntity<String> deleteStudent(@PathVariable int student_id) {
-        studentService.deleteUser(student_id);
+    public ResponseEntity<String> deleteStudent(@PathVariable int userId) {
+        studentService.deleteUser(userId);
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
     }
 }

@@ -1,8 +1,8 @@
 package com.Cockroach.model;
 
-import com.Cockroach.factory.DiscountFactory;
-import com.Cockroach.factory.ItemWithDiscount;
-import com.Cockroach.factory.ItemWithoutDiscount;
+import com.Cockroach.strategy.DiscountStrategy;
+import com.Cockroach.strategy.ItemWithDiscount;
+import com.Cockroach.strategy.ItemWithoutDiscount;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,7 +34,7 @@ public class Menu {
     private Double specialDiscount;
 
     @Transient
-    private DiscountFactory discountFactory;
+    private DiscountStrategy discountFactory;
 
     @Transient
     private Double newPrice;
