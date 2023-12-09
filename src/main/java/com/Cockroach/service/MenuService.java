@@ -39,12 +39,24 @@ public class MenuService {
     }
 
     public void saveMenuItem(Menu menu) {
+        // Check if a special discount is provided
+        Double specialDiscount = menu.getSpecialDiscount();
+
+        // Create Menu instance with or without a special discount using the factory pattern
+        Menu menuWithDiscount = new Menu(
+                menu.getItem_id(),
+                menu.getCafe_id(),
+                menu.getName(),
+                menu.getDescription(),
+                menu.getPrice(),
+                specialDiscount
+        );
+
         try {
-            menuRepository.save(menu);
+            menuRepository.save(menuWithDiscount);
             logMessage("Successfully saved menu item with ID: " + menu.getItem_id());
         } catch (Exception e) {
             logMessage("Error saving menu item: " + e.getMessage());
-            // You might want to handle it in another way based on your requirements
         }
     }
 
@@ -54,7 +66,6 @@ public class MenuService {
             logMessage("Successfully deleted menu item with ID: " + itemId);
         } catch (Exception e) {
             logMessage("Error deleting menu item with ID: " + itemId + ": " + e.getMessage());
-            // You might want to handle it in another way based on your requirements
         }
     }
     private void logMessage(String message) {
