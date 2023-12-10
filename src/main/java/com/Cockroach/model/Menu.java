@@ -1,8 +1,11 @@
 package com.Cockroach.model;
 
+import com.Cockroach.strategy.DiscountStrategy;
+import com.Cockroach.strategy.ItemWithDiscount;
+import com.Cockroach.strategy.ItemWithoutDiscount;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "menu")
@@ -27,14 +30,29 @@ public class Menu {
     @Column(name = "price")
     private Double price;
 
-    public Menu() {}
+    @Column(name = "special_discount")
+    private Double specialDiscount;
 
-    public Menu(long item_id, long cafe_id, String name, String description, Double price) {
+    @Transient
+    private DiscountStrategy discountFactory;
+
+    @Transient
+    private Double newPrice;
+
+    public Menu() {
+        updateDiscountFactory();
+        updateNewPrice();
+    }
+
+    public Menu(long item_id, long cafe_id, String name, String description, Double price, Double specialDiscount) {
         this.item_id = item_id;
         this.cafe_id = cafe_id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.specialDiscount = specialDiscount;
+        updateDiscountFactory();
+        updateNewPrice();
     }
 
     public long getItem_id() {
@@ -75,5 +93,17 @@ public class Menu {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Double getSpecialDiscount() {
+        return specialDiscount;
+    }
+
+    private void updateDiscountFactory() {
+        this.discountFactory = (specialDiscount != null) ? new ItemWithDiscount(specialDiscount) : new ItemWithoutDiscount();
+    }
+
+    private void updateNewPrice() {
+        this.newPrice = this.discountFactory.applyDiscount(price);
     }
 }
