@@ -2,6 +2,8 @@ package com.Cockroach.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "student")
@@ -14,6 +16,11 @@ public class Student  {
     private byte[] profile_image;
     private Date reg_date;
 
+    @OneToMany(mappedBy = "recipient")
+    private Set<FriendNetwork> receivedFriendRequests = new HashSet<>();
+
+    @OneToMany(mappedBy = "sender")
+    private Set<FriendNetwork> sentFriendRequests = new HashSet<>();
     public Student() {}
 
     public Student(String userName, String cuEmail, byte[] profileImage, Date regDate) {
