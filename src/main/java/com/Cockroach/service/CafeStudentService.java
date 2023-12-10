@@ -1,5 +1,6 @@
 package com.Cockroach.service;
 
+import com.Cockroach.Observer.CafeConnectSubject;
 import com.Cockroach.model.Cafe;
 import com.Cockroach.model.CafeStudent;
 import com.Cockroach.model.Student;
@@ -13,22 +14,47 @@ import java.util.List;
 @Service
 public class CafeStudentService {
     private final CafeStudentRepo cafeStudentRepo;
+    private static CafeConnectSubject cafeConnectSubject;
+
     @Autowired
-    public CafeStudentService(CafeStudentRepo cafeStudentRepo) {
+    public CafeStudentService(CafeStudentRepo cafeStudentRepo, CafeConnectSubject cafeConnectSubject) {
         this.cafeStudentRepo = cafeStudentRepo;
+        CafeStudentService.cafeConnectSubject = cafeConnectSubject;
     }
     public List<Long> getCafeByStudentId(Long student_id){
         return cafeStudentRepo.getCafeByStudentId(student_id);
     }
     public List<Long> getStudentByCafeId(Long cafe_id){
-        return cafeStudentRepo.getStudentByCafeId(cafe_id);
+        try {
+            List<Long> student_id_list = cafeStudentRepo.getStudentByCafeId(cafe_id);
+            logMessage("Successfully retrieved students subscribed to a cafe.");
+            return student_id_list;
+        } catch (Exception e) {
+            logMessage("Error retrieving students subscribed to a cafe. " + e.getMessage());
+        }
+        return null;
     }
     public void saveEntry(Long cafeId, Long studentId){
-        cafeStudentRepo.save(new CafeStudent(cafeId, studentId));
+        try {
+            cafeStudentRepo.save(new CafeStudent(cafeId, studentId));
+            logMessage("Successfully saved entry for cafeId: " + cafeId + " and studentId: " + studentId);
+        } catch (Exception e) {
+            logMessage("Error saving entry: " + e.getMessage());
+        }
     }
     @Transactional
     public void deleteEntry(Long cafeId, Long studentId){
-        cafeStudentRepo.deleteEntry(cafeId, studentId);
+        try {
+            cafeStudentRepo.deleteEntry(cafeId, studentId);
+            logMessage("Successfully deleted entry for cafeId: " + cafeId + " and studentId: " + studentId);
+        } catch (Exception e) {
+            logMessage("Error deleting entry: " + e.getMessage());
+        }
+    }
+    private static void logMessage(String message) {
+        // Trigger the event and notify observers
+        CafeStudentService.cafeConnectSubject.setMessage(message);
+        System.out.println("Notified all Observers");
     }
     public void notifyStudents(Long cafeId, String message){
         List<Long> student_id_list = getStudentByCafeId(cafeId);
@@ -37,7 +63,7 @@ public class CafeStudentService {
         for(Long student_id : student_id_list){
             Student student = StudentService.getStudentById(student_id);
             System.out.println("Cafe_Name : " + cafe.getName()  + "\n"+ "Sent the Message: " + message + "\n" +
-                   "To Student : " + student.getStudent_name());
+                    "To Student : " + student.getStudent_name());
             System.out.println("------------------------------------------");
         }
     }
