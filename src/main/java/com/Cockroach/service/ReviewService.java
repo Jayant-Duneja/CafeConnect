@@ -65,6 +65,5 @@ public class ReviewService {
     private static void logMessage(String message) {
         // Trigger the event and notify observers
         ReviewService.cafeConnectSubject.setMessage(message);
-        System.out.println("Notified all Observers");
     }
 }

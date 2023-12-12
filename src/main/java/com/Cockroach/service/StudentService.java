@@ -142,6 +142,5 @@ public class StudentService {
     private static void logMessage(String message) {
         // Trigger the event and notify observers
         cafeConnectSubject.setMessage(message);
-        System.out.println("Notified all Observers");
     }
 }

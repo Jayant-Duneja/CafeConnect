@@ -63,6 +63,5 @@ public class MenuService {
     private static void logMessage(String message) {
         // Trigger the event and notify observers
         MenuService.cafeConnectSubject.setMessage(message);
-        System.out.println("Notified all Observers");
     }
 }

@@ -79,6 +79,5 @@ public class CafeService {
     private static void logMessage(String message) {
         // Trigger the event and notify observers
         CafeService.cafeConnectSubject.setMessage(message);
-        System.out.println("Notified all Observers");
     }
 }

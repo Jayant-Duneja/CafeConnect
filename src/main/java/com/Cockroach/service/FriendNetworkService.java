@@ -107,6 +107,5 @@ public class FriendNetworkService {
     private static void logMessage(String message) {
         // Trigger the event and notify observers
         FriendNetworkService.cafeConnectSubject.setMessage(message);
-        System.out.println("Notified all Observers");
     }
 }

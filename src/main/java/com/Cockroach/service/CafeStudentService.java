@@ -54,7 +54,6 @@ public class CafeStudentService {
     private static void logMessage(String message) {
         // Trigger the event and notify observers
         CafeStudentService.cafeConnectSubject.setMessage(message);
-        System.out.println("Notified all Observers");
     }
     public void notifyStudents(Long cafeId, String message){
         List<Long> student_id_list = getStudentByCafeId(cafeId);
@@ -62,9 +61,10 @@ public class CafeStudentService {
         String response = "";
         for(Long student_id : student_id_list){
             Student student = StudentService.getStudentById(student_id);
-            System.out.println("Cafe_Name : " + cafe.getName()  + "\n"+ "Sent the Message: " + message + "\n" +
+            logMessage("Cafe_Name : " + cafe.getName()  + "\n"+ "Sent the Message: " + message + "\n" +
                     "To Student : " + student.getStudent_name());
-            System.out.println("------------------------------------------");
+            logMessage("Notified all Observers");
+            logMessage("------------------------------------------");
         }
     }
 }
