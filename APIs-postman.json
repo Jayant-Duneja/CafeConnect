@@ -1,0 +1,498 @@
+{
+	"info": {
+		"_postman_id": "abafa8e0-d34b-4dfb-9d0a-75c54d0aadbd",
+		"name": "OOAD-final-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30324382",
+		"_collection_link": "https://warped-water-407989.postman.co/workspace/New-Team-Workspace~497a3bac-c3bd-4f96-b194-cc506994f014/collection/30324382-abafa8e0-d34b-4dfb-9d0a-75c54d0aadbd?action=share&source=collection_link&creator=30324382"
+	},
+	"item": [
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "/find",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/student/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"student",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student_name\": \"Video Recording Student\",\n    \"profile_image\": null,\n    \"cu_email\": \"student.test@colorado.edu\",\n    \"reg_date\": \"2023-12-11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/student/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"student",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cafe",
+			"item": [
+				{
+					"name": "/find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cafe/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cafe",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Video Recording Cafe\",\n    \"cuisine\": \"Test\",\n    \"description\": \"Test.\",\n    \"location\": \"CU Boulder\",\n    \"contact\": \"+1234567890\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cafe/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cafe",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/find/{cafe_id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cafe/find/919648317193191425",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cafe",
+								"find",
+								"919648317193191425"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "/find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/review/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"review",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student_id\": 924965674416701441,\n    \"cafe_id\": 924966441605529601,\n    \"rating\": 4,\n    \"comment\": \"Great experience.\",\n    \"review_date\": \"2023-12-06\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/review/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"review",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "/find",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/menu/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"menu",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"item_id\": 922975592775090177,\n  \"cafe_id\": 922915161134235649,\n  \"name\": \"Taco\",\n  \"description\": \"Cheesy \",\n  \"price\": 4.99,\n  \"specialDiscount\":0.2\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/menu/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"menu",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/find/{cafe_id}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/menu/find/922915161134235649",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"menu",
+								"find",
+								"922915161134235649"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "Send Notification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cafe_id\" : \"924966441605529601\",\n    \"message\" : \"HI. Testing notifying all Observers\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/notify/send",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notify",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Subscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cafe_id\" : \"924966441605529601\",\n    \"student_id\" : \"924965674416701441\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/notify/remove",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notify",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Subscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cafe_id\" : \"924966441605529601\",\n    \"student_id\" : \"924965674416701441\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/notify/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notify",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FriendRequest",
+			"item": [
+				{
+					"name": "/{sender}/{receiver}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/student/friend-request/send/919641261712343041/924965674416701441",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"student",
+								"friend-request",
+								"send",
+								"919641261712343041",
+								"924965674416701441"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pending/{student_id}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/student/friend-request/pending/924965674416701441",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"student",
+								"friend-request",
+								"pending",
+								"924965674416701441"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accept/{request_id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/student/friend-request/accept/924975036458631169",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"student",
+								"friend-request",
+								"accept",
+								"924975036458631169"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "friends/{student_id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/student/friends/919641261712343041",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"student",
+								"friends",
+								"919641261712343041"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
