@@ -7,7 +7,8 @@ Team Members:
 
 Java Version: 17
 
-Additional Comments: 
-REPORT: Project-7-Report.pdf
-VIDEO: Video_Demonstration.mp4 
+Additional Comments: <br/>
+**REPORT:** Project-7-Report.pdf <br/>
+**VIDEO:** Video_Demonstration.mp4 <br/>
+
 POSTMAN API INFO:  APIs-postman.json
